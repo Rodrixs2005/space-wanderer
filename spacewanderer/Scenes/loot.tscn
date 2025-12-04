@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://c5gdxre61yuyg"]
+
+[ext_resource type="Script" path="res://Scripts/loot.gd" id="1_2g2xo"]
+[ext_resource type="Texture2D" uid="uid://qbmdsudx8rcn" path="res://Sprites/Loot/Loot1.png" id="1_plf5p"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cq50a"]
+radius = 8.20244
+
+[node name="Loot" type="Area2D"]
+scale = Vector2(5, 5)
+script = ExtResource("1_2g2xo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_cq50a")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_plf5p")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

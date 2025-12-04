@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3 uid="uid://bxgmfm8nx7oxx"]
+
+[ext_resource type="Script" path="res://Scripts/SpaceShip.gd" id="1_y6eq8"]
+[ext_resource type="Texture2D" uid="uid://bjwlgeuerqjvo" path="res://Sprites/SpaceShip.png" id="2_xlxpb"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1pcv7"]
+radius = 1.2
+height = 16.2853
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_es0q5"]
+size = Vector2(8.91316, 1.5)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7oief"]
+radius = 1.45602
+
+[node name="SpaceShip" type="CharacterBody2D"]
+scale = Vector2(5, 5)
+script = ExtResource("1_y6eq8")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_xlxpb")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-4.4, 0.6)
+rotation = 0.446804
+shape = SubResource("CapsuleShape2D_1pcv7")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(4.2, 0.6)
+rotation = -0.446804
+shape = SubResource("CapsuleShape2D_1pcv7")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-0.2, 5.2)
+shape = SubResource("RectangleShape2D_es0q5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_7oief")
+
+[node name="Bullets" type="CanvasLayer" parent="."]
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

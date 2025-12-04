@@ -1,0 +1,48 @@
+[gd_scene load_steps=8 format=3 uid="uid://c1203jg1x1lqh"]
+
+[ext_resource type="PackedScene" uid="uid://bxgmfm8nx7oxx" path="res://Scenes/space_ship.tscn" id="1_j0n1b"]
+[ext_resource type="Script" path="res://Scripts/level.gd" id="1_shjfo"]
+[ext_resource type="PackedScene" uid="uid://bae5nrofxnqhc" path="res://Scenes/asteroid_spawner.tscn" id="2_b3d64"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d8t0l"]
+size = Vector2(225.5, 3403)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_twqmm"]
+size = Vector2(216, 3496)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r1wu0"]
+size = Vector2(4349, 179)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_223bs"]
+size = Vector2(4792, 382)
+
+[node name="Level" type="Node2D"]
+script = ExtResource("1_shjfo")
+
+[node name="SpaceShip" parent="." instance=ExtResource("1_j0n1b")]
+position = Vector2(960, 540)
+
+[node name="Asteroid Spawner" parent="." instance=ExtResource("2_b3d64")]
+
+[node name="Borders" type="Area2D" parent="." groups=["Border"]]
+
+[node name="Left" type="CollisionShape2D" parent="Borders" groups=["Border"]]
+position = Vector2(-1430, 430.5)
+shape = SubResource("RectangleShape2D_d8t0l")
+
+[node name="Right" type="CollisionShape2D" parent="Borders" groups=["Border"]]
+position = Vector2(3135, 472)
+shape = SubResource("RectangleShape2D_twqmm")
+
+[node name="Up" type="CollisionShape2D" parent="Borders" groups=["Border"]]
+position = Vector2(851.5, -1186)
+shape = SubResource("RectangleShape2D_r1wu0")
+
+[node name="Down" type="CollisionShape2D" parent="Borders" groups=["Border"]]
+position = Vector2(839, 2293)
+shape = SubResource("RectangleShape2D_223bs")
+
+[connection signal="endingLevel" from="." to="SpaceShip" method="_on_level_ending_level"]
+[connection signal="asteroidDestroyedByShield" from="SpaceShip" to="." method="_on_space_ship_asteroid_destroyed_by_shield"]
+[connection signal="asteroidCreated" from="Asteroid Spawner" to="." method="_on_asteroid_created"]
+[connection signal="maxSpawnReached" from="Asteroid Spawner" to="." method="_on_max_spawn_reached"]

@@ -1,0 +1,91 @@
+[gd_scene load_steps=8 format=3 uid="uid://c1203jg1x1lqh"]
+
+[ext_resource type="PackedScene" uid="uid://bxgmfm8nx7oxx" path="res://Scenes/space_ship.tscn" id="1_j0n1b"]
+[ext_resource type="Script" path="res://Scripts/level.gd" id="1_shjfo"]
+[ext_resource type="PackedScene" uid="uid://bae5nrofxnqhc" path="res://Scenes/asteroid_spawner.tscn" id="2_b3d64"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d8t0l"]
+size = Vector2(225.5, 3403)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_twqmm"]
+size = Vector2(216, 3496)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r1wu0"]
+size = Vector2(4349, 179)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_223bs"]
+size = Vector2(4792, 382)
+
+[node name="Level" type="Node2D"]
+script = ExtResource("1_shjfo")
+
+[node name="SpaceShip" parent="." instance=ExtResource("1_j0n1b")]
+position = Vector2(960, 540)
+
+[node name="Asteroid Spawner" parent="." instance=ExtResource("2_b3d64")]
+
+[node name="Borders" type="Area2D" parent="." groups=["Border"]]
+
+[node name="Left" type="CollisionShape2D" parent="Borders" groups=["Border"]]
+position = Vector2(-1430, 430.5)
+shape = SubResource("RectangleShape2D_d8t0l")
+
+[node name="Right" type="CollisionShape2D" parent="Borders" groups=["Border"]]
+position = Vector2(3135, 472)
+shape = SubResource("RectangleShape2D_twqmm")
+
+[node name="Up" type="CollisionShape2D" parent="Borders" groups=["Border"]]
+position = Vector2(851.5, -1186)
+shape = SubResource("RectangleShape2D_r1wu0")
+
+[node name="Down" type="CollisionShape2D" parent="Borders" groups=["Border"]]
+position = Vector2(839, 2293)
+shape = SubResource("RectangleShape2D_223bs")
+
+[node name="UpgradeZone" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1922.0
+offset_bottom = 1080.0
+size_flags_horizontal = 0
+
+[node name="MaxSpeed" type="Button" parent="UpgradeZone"]
+layout_mode = 0
+offset_left = 111.0
+offset_top = 185.0
+offset_right = 615.0
+offset_bottom = 363.0
+disabled = true
+text = "max speed + 10"
+
+[node name="DefSpeed" type="Button" parent="UpgradeZone"]
+layout_mode = 0
+offset_left = 153.0
+offset_top = 795.0
+offset_right = 657.0
+offset_bottom = 973.0
+disabled = true
+text = "def speed + 10"
+
+[node name="Ammo" type="Button" parent="UpgradeZone"]
+layout_mode = 0
+offset_left = 1138.0
+offset_top = 152.0
+offset_right = 1642.0
+offset_bottom = 330.0
+disabled = true
+text = "ammo + 10"
+
+[node name="Gas" type="Button" parent="UpgradeZone"]
+layout_mode = 0
+offset_left = 1195.0
+offset_top = 769.0
+offset_right = 1699.0
+offset_bottom = 947.0
+disabled = true
+text = "gas +10"
+
+[node name="Timer" type="Timer" parent="UpgradeZone"]
+
+[connection signal="timeout" from="UpgradeZone/Timer" to="." method="_on_timer_timeout"]

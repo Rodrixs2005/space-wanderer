@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://bae5nrofxnqhc"]
+
+[ext_resource type="Script" path="res://Scripts/AsteroidSpawner.gd" id="1_geke1"]
+
+[node name="Asteroid Spawner" type="Node2D"]
+script = ExtResource("1_geke1")
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,0 +1,130 @@
+[gd_scene load_steps=3 format=3 uid="uid://bpfhmx32uh6mu"]
+
+[ext_resource type="Texture2D" uid="uid://bjwlgeuerqjvo" path="res://Sprites/SpaceShip.png" id="1_k8v02"]
+[ext_resource type="Script" path="res://Scripts/upgrading_zone.gd" id="1_kevkh"]
+
+[node name="UpgradingZone" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_kevkh")
+
+[node name="BulletCapacity" type="Button" parent="."]
+layout_mode = 0
+offset_left = 677.0
+offset_top = 228.0
+offset_right = 1170.0
+offset_bottom = 410.0
+text = "BulletCapacity"
+
+[node name="Acceleration" type="Button" parent="."]
+layout_mode = 0
+offset_left = 89.0
+offset_top = 224.0
+offset_right = 582.0
+offset_bottom = 406.0
+text = "Acceleration"
+
+[node name="Engine" type="Button" parent="."]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 443.0
+offset_right = 593.0
+offset_bottom = 625.0
+text = "Engine"
+
+[node name="Cannon" type="Button" parent="."]
+layout_mode = 0
+offset_left = 680.0
+offset_top = 445.0
+offset_right = 1173.0
+offset_bottom = 627.0
+text = "CannonRepair"
+
+[node name="Tank" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1331.0
+offset_top = 445.0
+offset_right = 1824.0
+offset_bottom = 627.0
+text = "TankRepair"
+
+[node name="Agility" type="Button" parent="."]
+layout_mode = 0
+offset_left = 82.0
+offset_top = 21.0
+offset_right = 575.0
+offset_bottom = 203.0
+text = "Agility"
+
+[node name="Bullets" type="Button" parent="."]
+layout_mode = 0
+offset_left = 679.0
+offset_top = 31.0
+offset_right = 1172.0
+offset_bottom = 213.0
+text = "Bullets"
+
+[node name="GasCapacity" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1327.0
+offset_top = 236.0
+offset_right = 1820.0
+offset_bottom = 418.0
+text = "GasCapacity"
+
+[node name="Gas" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1325.0
+offset_top = 35.0
+offset_right = 1818.0
+offset_bottom = 217.0
+text = "Gas"
+
+[node name="DurabilitySuper" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1319.0
+offset_top = 814.0
+offset_right = 1812.0
+offset_bottom = 996.0
+text = "Shield"
+
+[node name="ShootingSuper" type="Button" parent="."]
+layout_mode = 0
+offset_left = 674.0
+offset_top = 812.0
+offset_right = 1167.0
+offset_bottom = 994.0
+text = "SUPERSHOOT"
+
+[node name="MovilitySuper" type="Button" parent="."]
+layout_mode = 0
+offset_left = 72.0
+offset_top = 822.0
+offset_right = 565.0
+offset_bottom = 1004.0
+text = "TP"
+
+[node name="SpaceShip" type="Sprite2D" parent="."]
+position = Vector2(935, 742)
+scale = Vector2(5, 5)
+texture = ExtResource("1_k8v02")
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="pressed" from="BulletCapacity" to="." method="_on_bullet_capacity_pressed"]
+[connection signal="pressed" from="Acceleration" to="." method="_on_acceleration_pressed"]
+[connection signal="pressed" from="Engine" to="." method="_on_engine_pressed"]
+[connection signal="pressed" from="Cannon" to="." method="_on_cannon_pressed"]
+[connection signal="pressed" from="Tank" to="." method="_on_tank_pressed"]
+[connection signal="pressed" from="Agility" to="." method="_on_agility_pressed"]
+[connection signal="pressed" from="Bullets" to="." method="_on_bullets_pressed"]
+[connection signal="pressed" from="GasCapacity" to="." method="_on_gas_capacity_pressed"]
+[connection signal="pressed" from="Gas" to="." method="_on_gas_pressed"]
+[connection signal="pressed" from="DurabilitySuper" to="." method="_on_durability_super_pressed"]
+[connection signal="pressed" from="ShootingSuper" to="." method="_on_shooting_super_pressed"]
+[connection signal="pressed" from="MovilitySuper" to="." method="_on_movility_super_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
